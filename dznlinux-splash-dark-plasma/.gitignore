@@ -1,0 +1,28 @@
+# Makepkg build artifacts
+*.tar
+*.tar.*
+*.zip
+*.tgz
+*.log
+*.log.*
+*.sig
+
+# Build directories
+src/
+pkg/
+
+# Package files
+*.pkg.tar.zst
+*.pkg.tar.xz
+
+# Temporary files
+*~
+*.swp
+*.swo
+.*.swp
+.*.swo
+
+# Editor files
+.vscode/
+.idea/
+*.kate-swp

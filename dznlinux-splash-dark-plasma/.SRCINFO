@@ -1,0 +1,15 @@
+pkgbase = dznlinux-splash-dark-plasma-git
+	pkgdesc = DZN-Linux Dark Splash Screen for Plasma 6
+	pkgver = r1.0
+	pkgrel = 1
+	url = https://github.com/DZN-Linux/DZN-Linux
+	arch = any
+	license = GPL
+	makedepends = git
+	depends = plasma-workspace
+	provides = dznlinux-splash-dark-plasma
+	conflicts = dznlinux-splash-dark-plasma
+	source = dznlinux-splash-dark-plasma::git+https://github.com/DZN-Linux/DZN-Linux.git
+	sha256sums = SKIP
+
+pkgname = dznlinux-splash-dark-plasma-git
