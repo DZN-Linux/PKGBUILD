@@ -1,0 +1,28 @@
+# Maintainer: Seth Dawson <dznlinux@gmail.com>
+
+pkgname=PACKAGE_NAME
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="PACKAGE_DESCRIPTION"
+arch=('any')
+url="https://github.com/DZN-Linux/${pkgname}"
+license=('GPL')
+depends=()  # Add runtime dependencies here
+optdepends=()  # Add optional dependencies here
+source=("${pkgname}-${pkgver}.tar.gz::https://github.com/DZN-Linux/${pkgname}/archive/v${pkgver}.tar.gz")
+sha256sums=('GENERATE_WITH_makepkg_-g')
+
+package() {
+  cd "${srcdir}/${pkgname}-${pkgver}"
+
+  # Install files (example - modify as needed)
+  # install -dm755 "${pkgdir}/usr/share/${pkgname}"
+  # cp -r files/* "${pkgdir}/usr/share/${pkgname}/"
+
+  # Set proper permissions
+  # find "${pkgdir}/usr/share/${pkgname}" -type f -exec chmod 644 {} \;
+  # find "${pkgdir}/usr/share/${pkgname}" -type d -exec chmod 755 {} \;
+
+  # Install documentation
+  install -Dm644 README.md "${pkgdir}/usr/share/doc/${pkgname}/README.md"
+}

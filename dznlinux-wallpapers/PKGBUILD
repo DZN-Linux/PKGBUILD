@@ -1,0 +1,39 @@
+# Maintainer: Seth Dawson <dznlinux@gmail.com>
+
+pkgname=dznlinux-wallpapers-git
+_pkgname=dznlinux-wallpapers
+pkgver=r1.0
+pkgrel=1
+pkgdesc="Wallpaper collection for DZN Linux (115 high-quality wallpapers)"
+arch=('any')
+url="https://github.com/DZN-Linux/dznlinux-wallpapers"
+license=('GPL')
+makedepends=('git')
+provides=('dznlinux-wallpapers')
+conflicts=('dznlinux-wallpapers')
+source=("${_pkgname}::git+https://github.com/DZN-Linux/dznlinux-wallpapers.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd "${srcdir}/${_pkgname}"
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+package() {
+  cd "${srcdir}/${_pkgname}"
+
+  # Install wallpapers to /usr/share/backgrounds/dznlinux/
+  install -dm755 "${pkgdir}/usr/share/backgrounds/dznlinux"
+  cp -r usr/share/backgrounds/dznlinux/* "${pkgdir}/usr/share/backgrounds/dznlinux/"
+
+  # Install KDE Plasma wallpaper metadata
+  install -dm755 "${pkgdir}/usr/share/wallpapers/DZNLinux"
+  cp -r usr/share/wallpapers/DZNLinux/* "${pkgdir}/usr/share/wallpapers/DZNLinux/"
+
+  # Set proper permissions
+  find "${pkgdir}/usr/share/backgrounds/dznlinux" -type f -exec chmod 644 {} \;
+  find "${pkgdir}/usr/share/wallpapers/DZNLinux" -type f -exec chmod 644 {} \;
+
+  # Install documentation
+  install -Dm644 README.md "${pkgdir}/usr/share/doc/${_pkgname}/README.md"
+}
