@@ -3,7 +3,7 @@
 pkgname=dznlinux-wallpapers-git
 _pkgname=dznlinux-wallpapers
 pkgver=r1
-pkgrel=1
+pkgrel=2
 pkgdesc="Wallpaper collection for DZN Linux (115 high-quality wallpapers)"
 arch=('any')
 url="https://github.com/DZN-Linux/dznlinux-wallpapers"
@@ -27,12 +27,19 @@ package() {
   cp -r usr/share/backgrounds/dznlinux/* "${pkgdir}/usr/share/backgrounds/dznlinux/"
 
   # Install KDE Plasma wallpaper metadata
-  install -dm755 "${pkgdir}/usr/share/wallpapers/DZNLinux"
-  cp -r usr/share/wallpapers/DZNLinux/* "${pkgdir}/usr/share/wallpapers/DZNLinux/"
+  install -Dm644 usr/share/wallpapers/DZNLinux/metadata.desktop \
+    "${pkgdir}/usr/share/wallpapers/DZNLinux/metadata.desktop"
 
-  # Set proper permissions
+  # Create KDE Plasma contents/images/ with symlinks pointing to backgrounds
+  install -dm755 "${pkgdir}/usr/share/wallpapers/DZNLinux/contents/images"
+  for img in "${pkgdir}/usr/share/backgrounds/dznlinux/"*; do
+    fname=$(basename "$img")
+    ln -s "/usr/share/backgrounds/dznlinux/${fname}" \
+      "${pkgdir}/usr/share/wallpapers/DZNLinux/contents/images/${fname}"
+  done
+
+  # Set proper permissions on image files (symlinks inherit from target)
   find "${pkgdir}/usr/share/backgrounds/dznlinux" -type f -exec chmod 644 {} \;
-  find "${pkgdir}/usr/share/wallpapers/DZNLinux" -type f -exec chmod 644 {} \;
 
   # Install documentation
   install -Dm644 README.md "${pkgdir}/usr/share/doc/${_pkgname}/README.md"
