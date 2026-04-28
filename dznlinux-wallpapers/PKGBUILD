@@ -2,12 +2,12 @@
 
 pkgname=dznlinux-wallpapers-git
 _pkgname=dznlinux-wallpapers
-pkgver=r1.0
+pkgver=r1
 pkgrel=1
 pkgdesc="Wallpaper collection for DZN Linux (115 high-quality wallpapers)"
 arch=('any')
 url="https://github.com/DZN-Linux/dznlinux-wallpapers"
-license=('GPL')
+license=('GPL-3.0-only')
 makedepends=('git')
 provides=('dznlinux-wallpapers')
 conflicts=('dznlinux-wallpapers')

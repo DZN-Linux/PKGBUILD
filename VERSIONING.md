@@ -37,7 +37,7 @@ Example: `dznlinux-wallpapers-git` version `r47.a3f2c1d`
 **PKGBUILD setup**:
 ```bash
 pkgname=<package>-git
-pkgver=r1.0
+pkgver=r1
 pkgrel=1
 
 pkgver() {
@@ -92,7 +92,7 @@ pkgver=1.1.0  pkgrel=1  # New version (reset pkgrel)
 
 ### For -git Packages (Development)
 
-1. **Initial setup**: Set `pkgver=r1.0` in PKGBUILD
+1. **Initial setup**: Set `pkgver=r1` in PKGBUILD
 2. **Automatic versioning**: `pkgver()` function updates version during build
 3. **Package updates**: Only increment `pkgrel` for PKGBUILD changes
 4. **Regenerate .SRCINFO**: `makepkg --printsrcinfo > .SRCINFO`
@@ -236,7 +236,7 @@ done
 ```bash
 pkgname=dznlinux-wallpapers-git
 _pkgname=dznlinux-wallpapers
-pkgver=r1.0                    # Placeholder
+pkgver=r1                    # Placeholder
 pkgrel=1
 provides=('dznlinux-wallpapers')
 conflicts=('dznlinux-wallpapers')
@@ -260,6 +260,8 @@ sha256sums=('abc123...')
 
 ### Example 3: Using VERSION file
 
+For reference only — the VERSION file in the source repo can be used to cross-check the current release, but for stable PKGBUILDs `pkgver` should be set statically and updated manually on each release. Do not combine a `pkgver()` function with a `#tag=v${pkgver}` source, as the tag is resolved from the static value at parse time, not from the function output.
+
 **Source repo (dznlinux-wallpapers/VERSION)**:
 ```
 1.0.0
@@ -271,12 +273,8 @@ pkgname=dznlinux-wallpapers
 pkgver=1.0.0
 pkgrel=1
 
-pkgver() {
-  cd "${srcdir}/${pkgname}"
-  cat VERSION
-}
-
-source=("${pkgname}::git+https://github.com/DZN-Linux/${pkgname}.git#tag=v${pkgver}")
+source=("${pkgname}-${pkgver}.tar.gz::https://github.com/DZN-Linux/${pkgname}/archive/v${pkgver}.tar.gz")
+sha256sums=('ACTUAL_SHA256_HASH')
 ```
 
 ## Summary
