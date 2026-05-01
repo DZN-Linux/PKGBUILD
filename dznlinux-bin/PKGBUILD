@@ -1,0 +1,45 @@
+# Maintainer: Seth Dawson <dznlinux@gmail.com>
+
+pkgname=dznlinux-bin-git
+_pkgname=dznlinux-bin
+pkgver=r1.0
+pkgrel=1
+pkgdesc="Utility scripts and terminal fun for DZN Linux — fetch, sysinfo, ASCII art, and system helpers"
+arch=('any')
+url="https://github.com/DZN-Linux/dznlinux-bin"
+license=('GPL3')
+makedepends=('git')
+depends=('bash')
+optdepends=(
+    'kscreen: Wayland resolution detection on KDE Plasma'
+    'wlr-randr: Wayland resolution detection on wlroots compositors'
+    'lsb-release: OS name detection in fetch and sysinfo'
+    'pciutils: GPU detection in fetch'
+    'samba: Samba file sharing scripts'
+    'avahi: Network discovery scripts'
+)
+provides=('dznlinux-bin')
+conflicts=('dznlinux-bin')
+source=("${_pkgname}::git+https://github.com/DZN-Linux/dznlinux-bin.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd "${srcdir}/${_pkgname}"
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+package() {
+  cd "${srcdir}/${_pkgname}"
+
+  # Install scripts to /etc/skel/.bin so new users get them automatically
+  install -dm755 "${pkgdir}/etc/skel/.bin"
+  cp -r etc/skel/.bin/. "${pkgdir}/etc/skel/.bin/"
+
+  # Make all scripts executable
+  find "${pkgdir}/etc/skel/.bin" -type f -exec chmod 755 {} \;
+  find "${pkgdir}/etc/skel/.bin" -type d -exec chmod 755 {} \;
+
+  # Install documentation
+  install -Dm644 README.md "${pkgdir}/usr/share/doc/${_pkgname}/README.md"
+  install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${_pkgname}/LICENSE"
+}

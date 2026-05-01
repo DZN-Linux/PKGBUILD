@@ -1,0 +1,16 @@
+pkgbase = dznlinux-arc-themes-git
+	pkgdesc = Arc GTK theme collection for DZN Linux — 69 color variants with GTK 3 and GTK 4 support
+	pkgver = r1.0
+	pkgrel = 1
+	url = https://github.com/DZN-Linux/dznlinux-arc-themes
+	arch = any
+	license = GPL3
+	makedepends = git
+	depends = gtk3
+	optdepends = gtk4: GTK 4 application theming
+	provides = dznlinux-arc-themes
+	conflicts = dznlinux-arc-themes
+	source = dznlinux-arc-themes::git+https://github.com/DZN-Linux/dznlinux-arc-themes.git
+	sha256sums = SKIP
+
+pkgname = dznlinux-arc-themes-git

@@ -1,0 +1,20 @@
+pkgbase = dznlinux-sddm-theme-plasma-git
+	pkgdesc = DZNLinux SDDM theme for KDE Plasma
+	pkgver = r1.0
+	pkgrel = 1
+	url = https://github.com/DZN-Linux/dznlinux-sddm-theme-plasma
+	arch = any
+	license = GPL-3.0-or-later
+	makedepends = git
+	depends = sddm
+	depends = libplasma
+	depends = qt6-5compat
+	depends = kf6-kirigami
+	depends = plasma-workspace
+	optdepends = qt6-virtualkeyboard: virtual keyboard support at login screen
+	provides = dznlinux-sddm-theme-plasma
+	conflicts = dznlinux-sddm-theme-plasma
+	source = dznlinux-sddm-theme-plasma::git+https://github.com/DZN-Linux/dznlinux-sddm-theme-plasma
+	sha256sums = SKIP
+
+pkgname = dznlinux-sddm-theme-plasma-git

@@ -1,0 +1,26 @@
+pkgbase = dznlinux-config-plasma-git
+	pkgdesc = Default KDE Plasma 6.6 configuration for DZN Linux — GTK theming, MIME associations, and app layouts
+	pkgver = r1.0
+	pkgrel = 1
+	url = https://github.com/DZN-Linux/dznlinux-config-plasma
+	arch = any
+	license = GPL3
+	makedepends = git
+	depends = plasma-integration
+	depends = xdg-desktop-portal-kde
+	optdepends = dolphin: file manager configuration
+	optdepends = gwenview: image viewer configuration
+	optdepends = kate: default text editor associations
+	optdepends = ark: default archive manager associations
+	optdepends = okular: default PDF viewer associations
+	optdepends = vlc: default audio and video associations
+	optdepends = kleopatra: PGP key and certificate associations
+	optdepends = ktorrent: default torrent associations
+	optdepends = firefox: default browser associations
+	optdepends = thunderbird: default mail client associations
+	provides = dznlinux-config-plasma
+	conflicts = dznlinux-config-plasma
+	source = dznlinux-config-plasma::git+https://github.com/DZN-Linux/dznlinux-config-plasma.git
+	sha256sums = SKIP
+
+pkgname = dznlinux-config-plasma-git

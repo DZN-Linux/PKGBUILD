@@ -1,0 +1,21 @@
+pkgbase = dznlinux-bin-git
+	pkgdesc = Utility scripts and terminal fun for DZN Linux — fetch, sysinfo, ASCII art, and system helpers
+	pkgver = r1.0
+	pkgrel = 1
+	url = https://github.com/DZN-Linux/dznlinux-bin
+	arch = any
+	license = GPL3
+	makedepends = git
+	depends = bash
+	optdepends = kscreen: Wayland resolution detection on KDE Plasma
+	optdepends = wlr-randr: Wayland resolution detection on wlroots compositors
+	optdepends = lsb-release: OS name detection in fetch and sysinfo
+	optdepends = pciutils: GPU detection in fetch
+	optdepends = samba: Samba file sharing scripts
+	optdepends = avahi: Network discovery scripts
+	provides = dznlinux-bin
+	conflicts = dznlinux-bin
+	source = dznlinux-bin::git+https://github.com/DZN-Linux/dznlinux-bin.git
+	sha256sums = SKIP
+
+pkgname = dznlinux-bin-git
