@@ -2,6 +2,8 @@
 
 pkgname=dznlinux-config-plasma-git
 _pkgname=dznlinux-config-plasma
+_destname1="/etc/skel/"
+_licensedir="/usr/share/dznlinux/licenses/"
 pkgver=r1.0
 pkgrel=1
 pkgdesc="Default KDE Plasma 6.6 configuration for DZN Linux — GTK theming, MIME associations, and app layouts"
@@ -22,9 +24,10 @@ optdepends=(
     'firefox: default browser associations'
     'thunderbird: default mail client associations'
 )
-provides=('dznlinux-config-plasma')
-conflicts=('dznlinux-config-plasma')
-source=("${_pkgname}::git+https://github.com/DZN-Linux/dznlinux-config-plasma.git")
+provides=("${_pkgname}")
+conflicts=("${_pkgname}")
+options=(!strip !emptydirs)
+source=("${_pkgname}::git+https://github.com/DZN-Linux/${_pkgname}.git")
 sha256sums=('SKIP')
 
 pkgver() {
@@ -33,17 +36,9 @@ pkgver() {
 }
 
 package() {
-  cd "${srcdir}/${_pkgname}"
+    install -dm755 "${pkgdir}${_licensedir}${_pkgname}"
+    install -m644  "${srcdir}/${_pkgname}/LICENSE" "${pkgdir}${_licensedir}${_pkgname}"
 
-  # Install skel configuration files
-  install -dm755 "${pkgdir}/etc/skel"
-  cp -r etc/skel/. "${pkgdir}/etc/skel/"
-
-  # Set proper permissions
-  find "${pkgdir}/etc/skel" -type f -exec chmod 644 {} \;
-  find "${pkgdir}/etc/skel" -type d -exec chmod 755 {} \;
-
-  # Install documentation
-  install -Dm644 README.md "${pkgdir}/usr/share/doc/${_pkgname}/README.md"
-  install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${_pkgname}/LICENSE"
+    install -dm755 "${pkgdir}${_destname1}"
+    cp -r "${srcdir}/${_pkgname}${_destname1}." "${pkgdir}${_destname1}"
 }

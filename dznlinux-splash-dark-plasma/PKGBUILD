@@ -2,18 +2,20 @@
 
 pkgname=dznlinux-splash-dark-plasma-git
 _pkgname=dznlinux-splash-dark-plasma
+_destname1="/usr/share/plasma/look-and-feel/"
+_licensedir="/usr/share/dznlinux/licenses/"
 pkgver=r1.0
 pkgrel=1
 pkgdesc="DZN-Linux Dark Splash Screen for Plasma 6"
 arch=('any')
-url="https://github.com/DZN-Linux/DZN-Linux"
-license=('GPL')
+url="https://github.com/DZN-Linux/dznlinux-splash-dark-plasma"
+license=('GPL3')
 makedepends=('git')
 depends=('plasma-workspace')
-optdepends=()
 provides=("${_pkgname}")
 conflicts=("${_pkgname}")
-source=("${_pkgname}::git+https://github.com/DZN-Linux/DZN-Linux.git")
+options=(!strip !emptydirs)
+source=("${_pkgname}::git+https://github.com/DZN-Linux/${_pkgname}.git")
 sha256sums=('SKIP')
 
 pkgver() {
@@ -22,18 +24,9 @@ pkgver() {
 }
 
 package() {
-  cd "${srcdir}/${_pkgname}/dznlinux-splash-dark-plasma"
+    install -dm755 "${pkgdir}${_licensedir}${_pkgname}"
+    install -m644  "${srcdir}/${_pkgname}/LICENSE" "${pkgdir}${_licensedir}${_pkgname}"
 
-  # Install Plasma Look and Feel package
-  install -dm755 "${pkgdir}/usr/share/plasma/look-and-feel/dznlinux-Splash-Dark"
-  cp -r usr/share/plasma/look-and-feel/dznlinux-Splash-Dark/* \
-    "${pkgdir}/usr/share/plasma/look-and-feel/dznlinux-Splash-Dark/"
-
-  # Set proper permissions
-  find "${pkgdir}/usr/share/plasma/look-and-feel/dznlinux-Splash-Dark" -type f -exec chmod 644 {} \;
-  find "${pkgdir}/usr/share/plasma/look-and-feel/dznlinux-Splash-Dark" -type d -exec chmod 755 {} \;
-
-  # Install documentation
-  install -Dm644 README.md "${pkgdir}/usr/share/doc/${_pkgname}/README.md"
-  install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${_pkgname}/LICENSE"
+    install -dm755 "${pkgdir}${_destname1}"
+    cp -r "${srcdir}/${_pkgname}${_destname1}"* "${pkgdir}${_destname1}"
 }

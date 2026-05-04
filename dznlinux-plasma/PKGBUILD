@@ -1,0 +1,44 @@
+# Maintainer: Seth Dawson <dznlinux@gmail.com>
+pkgname=dznlinux-plasma-git
+_pkgname=dznlinux-plasma
+_destname1="/etc/skel/.config/"
+_destname2="/etc/skel/.local/share/"
+_destname3="/etc/xdg/"
+_licensedir="/usr/share/dznlinux/licenses/"
+pkgver=r1.0
+pkgrel=1
+pkgdesc="KDE Plasma 6 desktop configuration for DZN Linux"
+arch=('any')
+url="https://github.com/DZN-Linux/dznlinux-plasma"
+license=('GPL3')
+makedepends=('git')
+depends=('plasma-workspace')
+optdepends=('konsole: terminal emulator — profile and color scheme included'
+            'yakuake: drop-down terminal — autostart and config included'
+            'kgpg: GPG encryption tool — autostart included'
+            'kvantum: Qt theme engine — configured via dznlinux-kvantum'
+            'aurorae: KWin decoration engine for McMojave window theme')
+provides=("${_pkgname}")
+conflicts=("${_pkgname}")
+options=(!strip !emptydirs)
+source=("${_pkgname}::git+https://github.com/DZN-Linux/${_pkgname}.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd "${srcdir}/${_pkgname}"
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+package() {
+	install -dm755 "${pkgdir}${_licensedir}${_pkgname}"
+	install -m644  "${srcdir}/${_pkgname}/LICENSE" "${pkgdir}${_licensedir}${_pkgname}"
+
+	install -dm755 "${pkgdir}${_destname1}"
+	cp -r "${srcdir}/${_pkgname}${_destname1}"* "${pkgdir}${_destname1}"
+
+	install -dm755 "${pkgdir}${_destname2}"
+	cp -r "${srcdir}/${_pkgname}${_destname2}"* "${pkgdir}${_destname2}"
+
+	install -dm755 "${pkgdir}${_destname3}"
+	cp -r "${srcdir}/${_pkgname}${_destname3}"* "${pkgdir}${_destname3}"
+}

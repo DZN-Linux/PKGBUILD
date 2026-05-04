@@ -1,0 +1,20 @@
+pkgbase = dznlinux-zsh-git
+	pkgdesc = zsh configs from DZN-Linux
+	pkgver = r1.0
+	pkgrel = 1
+	url = https://github.com/DZN-Linux/dznlinux-zsh
+	arch = any
+	license = GPL3
+	makedepends = git
+	depends = zsh
+	depends = oh-my-zsh
+	depends = zsh-syntax-highlighting
+	optdepends = yt-dlp: video/audio download aliases
+	provides = dznlinux-zsh
+	conflicts = dznlinux-zsh
+	options = !strip
+	options = !emptydirs
+	source = dznlinux-zsh::git+https://github.com/DZN-Linux/dznlinux-zsh.git
+	sha256sums = SKIP
+
+pkgname = dznlinux-zsh-git

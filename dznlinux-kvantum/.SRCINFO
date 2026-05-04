@@ -1,0 +1,17 @@
+pkgbase = dznlinux-kvantum-git
+	pkgdesc = Kvantum Qt theme configuration for DZN Linux
+	pkgver = r1.0
+	pkgrel = 1
+	url = https://github.com/DZN-Linux/dznlinux-kvantum
+	arch = any
+	license = GPL3
+	makedepends = git
+	depends = kvantum
+	provides = dznlinux-kvantum
+	conflicts = dznlinux-kvantum
+	options = !strip
+	options = !emptydirs
+	source = dznlinux-kvantum::git+https://github.com/DZN-Linux/dznlinux-kvantum.git
+	sha256sums = SKIP
+
+pkgname = dznlinux-kvantum-git

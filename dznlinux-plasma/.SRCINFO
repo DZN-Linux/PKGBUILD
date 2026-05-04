@@ -1,0 +1,22 @@
+pkgbase = dznlinux-plasma-git
+	pkgdesc = KDE Plasma 6 desktop configuration for DZN Linux
+	pkgver = r1.0
+	pkgrel = 1
+	url = https://github.com/DZN-Linux/dznlinux-plasma
+	arch = any
+	license = GPL3
+	makedepends = git
+	depends = plasma-workspace
+	optdepends = konsole: terminal emulator — profile and color scheme included
+	optdepends = yakuake: drop-down terminal — autostart and config included
+	optdepends = kgpg: GPG encryption tool — autostart included
+	optdepends = kvantum: Qt theme engine — configured via dznlinux-kvantum
+	optdepends = aurorae: KWin decoration engine for McMojave window theme
+	provides = dznlinux-plasma
+	conflicts = dznlinux-plasma
+	options = !strip
+	options = !emptydirs
+	source = dznlinux-plasma::git+https://github.com/DZN-Linux/dznlinux-plasma.git
+	sha256sums = SKIP
+
+pkgname = dznlinux-plasma-git

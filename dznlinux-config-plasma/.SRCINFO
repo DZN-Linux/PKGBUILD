@@ -20,6 +20,8 @@ pkgbase = dznlinux-config-plasma-git
 	optdepends = thunderbird: default mail client associations
 	provides = dznlinux-config-plasma
 	conflicts = dznlinux-config-plasma
+	options = !strip
+	options = !emptydirs
 	source = dznlinux-config-plasma::git+https://github.com/DZN-Linux/dznlinux-config-plasma.git
 	sha256sums = SKIP
 
