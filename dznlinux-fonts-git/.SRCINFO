@@ -1,0 +1,16 @@
+pkgbase = dznlinux-fonts-git
+	pkgdesc = Fonts used for DZN Linux
+	pkgver = r1
+	pkgrel = 1
+	url = https://github.com/DZN-Linux/dznlinux-fonts
+	arch = any
+	license = GPL-3.0-only
+	makedepends = git
+	provides = dznlinux-fonts
+	conflicts = dznlinux-fonts
+	options = !strip
+	options = !emptydirs
+	source = dznlinux-fonts::git+https://github.com/DZN-Linux/dznlinux-fonts.git
+	sha256sums = SKIP
+
+pkgname = dznlinux-fonts-git
