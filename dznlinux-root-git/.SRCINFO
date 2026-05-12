@@ -1,0 +1,22 @@
+pkgbase = dznlinux-root-git
+	pkgdesc = Default shell configs and skel files for DZN Linux
+	pkgver = r1
+	pkgrel = 1
+	url = https://github.com/DZN-Linux/dznlinux-root
+	arch = any
+	license = GPL-3.0-only
+	makedepends = git
+	depends = bash
+	depends = zsh
+	depends = oh-my-zsh
+	depends = zsh-syntax-highlighting
+	depends = fastfetch
+	depends = lolcat
+	provides = dznlinux-root
+	conflicts = dznlinux-root
+	options = !strip
+	options = !emptydirs
+	source = dznlinux-root::git+https://github.com/DZN-Linux/dznlinux-root.git
+	sha256sums = SKIP
+
+pkgname = dznlinux-root-git

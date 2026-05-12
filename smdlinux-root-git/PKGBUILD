@@ -1,0 +1,30 @@
+# Maintainer: Seth Dawson <dznlinux@gmail.com>
+pkgname=dznlinux-root-git
+_pkgname=dznlinux-root
+_destname1="/etc/skel/"
+_licensedir="/usr/share/dznlinux/licenses/"
+pkgver=2.0.1
+pkgrel=3
+pkgdesc="root configs for DZN-Linux"
+arch=('any')
+url="https://github.com/DZN-Linux/dznlinux-root"
+license=('GPL3')
+makedepends=('git')
+depends=('bash')
+provides=("${pkgname}")
+options=(!strip !emptydirs)
+source=(${_pkgname}::"git+https://github.com/DZN-Linux/${_pkgname}.git")
+sha256sums=('SKIP')
+install='readme.install'
+package() {
+	install -dm755 ${pkgdir}${_licensedir}${_pkgname}
+	install -m644  ${srcdir}/${_pkgname}/LICENSE ${pkgdir}${_licensedir}${_pkgname}
+
+	install -dm755 ${pkgdir}${_destname1}
+	cp -r  ${srcdir}/${_pkgname}${_destname1}.bashrc-latest ${pkgdir}${_destname1}
+	cp -r  ${srcdir}/${_pkgname}${_destname1}.conkyrc ${pkgdir}${_destname1}
+	cp -r  ${srcdir}/${_pkgname}${_destname1}.dmrc ${pkgdir}${_destname1}
+	cp -r  ${srcdir}/${_pkgname}${_destname1}.face ${pkgdir}${_destname1}
+	cp -r  ${srcdir}/${_pkgname}${_destname1}.gtkrc-2.0 ${pkgdir}${_destname1}
+	cp -r  ${srcdir}/${_pkgname}${_destname1}.zshrc-latest ${pkgdir}${_destname1}
+}
